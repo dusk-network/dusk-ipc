@@ -1,0 +1,16 @@
+syntax="proto3";
+package ipc;
+option go_package = "github.com/dusk-network/dusk-ipc/ipc";
+
+service IPC {
+  rpc Notify(stream Request) returns (stream Response) {}
+  rpc Close(Request) returns (Response) {}
+}
+
+message Request {
+  bytes query = 1;
+}
+
+message Response {
+  bytes data = 1;
+}
