@@ -1,4 +1,4 @@
-# IPCBus server
+# IPCBus Junction
 
 This package contains the code required to allow the connection of an IPCBus 
 client (or multiple clients) that will relay relevant messages across some 

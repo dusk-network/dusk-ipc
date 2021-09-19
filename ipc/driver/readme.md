@@ -1,4 +1,4 @@
-# IPCBus client
+# EventBus Driver
 
 This package contains the code required to connect to an IPCBus and become a 
 node on its message dispatch graph.
