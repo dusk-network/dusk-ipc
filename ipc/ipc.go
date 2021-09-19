@@ -2,34 +2,37 @@ package ipc
 
 import (
 	"github.com/dusk-network/dusk-blockchain/pkg/p2p/wire/message"
+	"github.com/dusk-network/dusk-blockchain/pkg/p2p/wire/topics"
 	"github.com/dusk-network/dusk-blockchain/pkg/util/nativeutils/eventbus"
-	"google.golang.org/grpc"
 )
 
-// compile time check that eventbus.Listener interface is implemented
-var _ eventbus.Listener = &Listener{}
-
-// Listener implements the eventbus.Listener
-type Listener struct {
-	srv *grpc.Server
+type IPCBus struct {
+	*eventbus.EventBus
 }
 
-// NewListener returns a new IPCListener
-func NewListener(srv *grpc.Server) *Listener {
-	if srv == nil {
-		panic("without grpc server there is no ipc")
-	}
-	cs := &Listener{
-		srv: srv,
-	}
+// eventbus.Subscriber implementation
 
-	return cs
-}
-
-func (il *Listener) Notify(message message.Message) error {
+func (ib *IPCBus) Subscribe(topic topics.Topic, listener eventbus.Listener,
+) uint32 {
 	panic("implement me")
 }
 
-func (il *Listener) Close() {
+func (ib *IPCBus) Unsubscribe(topic topics.Topic, u uint32) {
+	panic("implement me")
+}
+
+// eventbus.Publisher implementation
+
+func (ib *IPCBus) Publish(topic topics.Topic, message message.Message) []error {
+	panic("implement me")
+}
+
+// eventbus.Multicaster implementation
+
+func (ib *IPCBus) AddDefaultTopic(topic topics.Topic) {
+	panic("implement me")
+}
+
+func (ib *IPCBus) SubscribeDefault(listener eventbus.Listener) uint32 {
 	panic("implement me")
 }
