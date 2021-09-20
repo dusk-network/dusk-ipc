@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: ipc.proto
 
-package ipc
+package bus
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewIPCClient(cc grpc.ClientConnInterface) IPCClient {
 }
 
 func (c *iPCClient) Notify(ctx context.Context, opts ...grpc.CallOption) (IPC_NotifyClient, error) {
-	stream, err := c.cc.NewStream(ctx, &IPC_ServiceDesc.Streams[0], "/ipc.IPC/Notify", opts...)
+	stream, err := c.cc.NewStream(ctx, &IPC_ServiceDesc.Streams[0], "/bus.IPC/Notify", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +68,7 @@ func (x *iPCNotifyClient) Recv() (*Response, error) {
 
 func (c *iPCClient) Close(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
-	err := c.cc.Invoke(ctx, "/ipc.IPC/Close", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/bus.IPC/Close", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -143,7 +143,7 @@ func _IPC_Close_Handler(srv interface{}, ctx context.Context, dec func(interface
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ipc.IPC/Close",
+		FullMethod: "/bus.IPC/Close",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(IPCServer).Close(ctx, req.(*Request))
@@ -155,7 +155,7 @@ func _IPC_Close_Handler(srv interface{}, ctx context.Context, dec func(interface
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var IPC_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "ipc.IPC",
+	ServiceName: "bus.IPC",
 	HandlerType: (*IPCServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

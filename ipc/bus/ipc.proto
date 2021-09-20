@@ -1,6 +1,6 @@
 syntax="proto3";
-package ipc;
-option go_package = "github.com/dusk-network/dusk-ipc/ipc";
+package bus;
+option go_package = "github.com/dusk-network/dusk-ipc/ipc/bus";
 
 service IPC {
   rpc Notify(stream Request) returns (stream Response) {}

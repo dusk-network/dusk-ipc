@@ -14,7 +14,7 @@ help: ## Display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 gen-go-grpc:
-	@protoc -I./ipc/ ./ipc/*.proto --go-grpc_out=paths=source_relative:./ipc/ --go_out=paths=source_relative:./ipc/
+	@protoc -I./ipc/bus/ ./ipc/bus/*.proto --go-grpc_out=paths=source_relative:./ipc/bus --go_out=paths=source_relative:./ipc/bus/
 
 generate:
 	@go generate ./...
